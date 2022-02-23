@@ -5,4 +5,26 @@
     <string name="cheat">cheat!</string>
     <string name="prev">prev</string>
     <string name="next">next</string>
+
+    <string name="q1">1_</string>
+    <string name="q2">2_</string>
+    <string name="q3">3_</string>
+    <string name="q4">4_</string>
+    <string name="q5">5_</string>
+    <string name="q6">6_</string>
+    <string name="q7">7_</string>
+    <string name="q8">8_</string>
+    <string name="q9">9_</string>
+    <string name="q10">10_</string>
+
+    <string name="a1">1</string>
+    <string name="a2">2</string>
+    <string name="a3">3</string>
+    <string name="a4">4</string>
+    <string name="a5">5</string>
+    <string name="a6">6</string>
+    <string name="a7">7</string>
+    <string name="a8">8</string>
+    <string name="a9">9</string>
+    <string name="a10">10</string>
 </resources>
