@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Quesstions Hw7</string>
+    <string name="_true">true</string>
+    <string name="_false">false</string>
+    <string name="cheat">cheat!</string>
+    <string name="prev">prev</string>
+    <string name="next">next</string>
+</resources>
