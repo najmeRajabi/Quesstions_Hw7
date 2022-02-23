@@ -27,4 +27,6 @@
     <string name="a8">8</string>
     <string name="a9">9</string>
     <string name="a10">10</string>
+    <string name="are_you_sure_you_want_do_cheat">Are you sure you want do cheat?</string>
+    <string name="show_answer">show answer</string>
 </resources>

@@ -1,16 +1,18 @@
 package com.example.quesstionshw7
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.quesstionshw7.databinding.ActivityMainBinding
-
+const val ANSWER = "answer"
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     var quesstionNumber = 0
     var quesstionArray = arrayListOf<String>()
     var answerArray = arrayListOf<String>()
+    var cheatArray = arrayListOf<Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         binding.btnPrev.setOnClickListener { preQuesstion() }
         binding.btnTrue.setOnClickListener { checkAnswer(true) }
         binding.btnFalse.setOnClickListener { checkAnswer(false) }
+        binding.cheatBtn.setOnClickListener { cheat() }
+    }
+
+    private fun cheat() {
+        var intent = Intent(this,AnswerActivity::class.java)
+        intent.putExtra(ANSWER , answerArray[quesstionNumber])
+        startActivity(intent)
     }
 
     private fun checkAnswer(answer:Boolean) {
