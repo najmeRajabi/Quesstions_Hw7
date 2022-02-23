@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     var quesstionArray = arrayListOf<String>()
     var answerArray = arrayListOf<String>()
     var cheatArray = arrayListOf<Boolean>()
+    var answered = arrayListOf<Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,8 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun cheat() {
-        var intent = Intent(this,AnswerActivity::class.java)
-        intent.putExtra(ANSWER , answerArray[quesstionNumber])
+        val intent = Intent(this,AnswerActivity::class.java)
+        intent.putExtra(ANSWER , answerArray[quesstionNumber].toString())
         startActivity(intent)
     }
 
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this,"incorrect!" , Toast.LENGTH_SHORT).show()
         }
+        answered[quesstionNumber]=true
     }
 
     fun nextQuesstion(){
