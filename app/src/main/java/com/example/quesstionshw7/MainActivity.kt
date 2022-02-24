@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     var quesstionArray = arrayListOf<String>()
     var answerArray = arrayListOf<String>()
     var cheatArray = arrayListOf<Boolean>()
-    var answered = arrayListOf<Boolean>()
+    var answered = arrayListOf<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,11 +34,26 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.q8) , getString(R.string.q9) ,
             getString(R.string.q10))
         showQuesstion()
+
+        answeredQuesstion()
         binding.btnNext.setOnClickListener { nextQuesstion() }
-        binding.btnPrev.setOnClickListener { preQuesstion() }
+        binding.btnPrev.setOnClickListener { prevQuesstion() }
         binding.btnTrue.setOnClickListener { checkAnswer(true) }
         binding.btnFalse.setOnClickListener { checkAnswer(false) }
         binding.cheatBtn.setOnClickListener { cheat() }
+    }
+
+    private fun answeredQuesstion() {
+        if (answered .contains( quesstionNumber)) {
+            binding.btnFalse.isEnabled = false
+            binding.btnTrue.isEnabled = false
+            binding.cheatBtn.isEnabled = false
+        } else {
+            binding.btnFalse.isEnabled = true
+            binding.btnTrue.isEnabled = true
+            binding.cheatBtn.isEnabled = true
+        }
+
     }
 
     private fun cheat() {
@@ -53,28 +68,31 @@ class MainActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this,"incorrect!" , Toast.LENGTH_SHORT).show()
         }
-        answered[quesstionNumber]=true
+        answered.add(quesstionNumber)
+        answeredQuesstion()
     }
 
     fun nextQuesstion(){
         if (quesstionNumber <9){
             quesstionNumber++
-            binding.btnPrev.isClickable = true
+            binding.btnPrev.isEnabled = true
         }else{
-            binding.btnNext.isClickable = false
-//            binding.btnNext.hintTextColors = getColor(R.color.gray)
+            binding.btnNext.isEnabled = false
+
         }
         showQuesstion()
+        answeredQuesstion()
     }
-    fun preQuesstion(){
+    fun prevQuesstion(){
         if (quesstionNumber >0){
             quesstionNumber--
-            binding.btnNext.isClickable = true
+            binding.btnNext.isEnabled = true
         }else{
-            binding.btnPrev.isClickable = false
-//            binding.btnPrev.background = getDrawable(R.color.gray)
+            binding.btnPrev.isEnabled = false
+
         }
         showQuesstion()
+        answeredQuesstion()
     }
     fun showQuesstion(){
         binding.questionTxv.text = quesstionArray[quesstionNumber].toString()
