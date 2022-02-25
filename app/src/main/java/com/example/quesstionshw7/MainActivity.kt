@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        if (savedInstanceState != null){
+            cheatArray = savedInstanceState.getIntegerArrayList("cheat") as ArrayList<Int>
+            answered = savedInstanceState.getIntegerArrayList("answered") as ArrayList<Int>
+        }
+
         answerArray = arrayListOf(
             getString(R.string.a1),
             getString(R.string.a2), getString(R.string.a3),
@@ -136,5 +141,14 @@ class MainActivity : AppCompatActivity() {
 
     fun showQuesstion() {
         binding.questionTxv.text = quesstionArray[quesstionNumber].toString()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState?.run {
+            putIntegerArrayList("cheat",cheatArray)
+            putIntegerArrayList("answered",answered)
+
+        }
+        super.onSaveInstanceState(outState)
     }
 }
