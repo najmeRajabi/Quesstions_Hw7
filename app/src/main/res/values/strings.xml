@@ -6,27 +6,28 @@
     <string name="prev">prev</string>
     <string name="next">next</string>
 
-    <string name="q1">1_</string>
-    <string name="q2">2_</string>
-    <string name="q3">3_</string>
-    <string name="q4">4_</string>
-    <string name="q5">5_</string>
-    <string name="q6">6_</string>
-    <string name="q7">7_</string>
-    <string name="q8">8_</string>
-    <string name="q9">9_</string>
-    <string name="q10">10_</string>
+    <string name="q1">1_برای تجزیه ی نور خورشید از آینه استفاده می شود.</string>
+    <string name="q2">2_خورشید چشمه ی اصلی نور طبیعی و گرمای زمین است.</string>
+    <string name="q3">3_نور یکی از شکل های انرژی است.</string>
+    <string name="q4">4_ذره بین را از شیشه و به شکل عدس می سازند.</string>
+    <string name="q5">5_در فرغون تکیه گاه در وسط قرار دارد.</string>
+    <string name="q6">6_پنکه یک ماشین ساده است. </string>
+    <string name="q7">7_آهنی که زنگ می زند ، می پوسد و مقاومتش کم می شود. </string>
+    <string name="q8">8_محل قرار گرفتن تکیه گاه در همه ی اهرم ها یکسان است.</string>
+    <string name="q9">9_نام علمی زنگ آهن اکسید آهن است. </string>
+    <string name="q10">10_در تغییر شیمیایی جنس ماده عوض نمی شود. </string>
 
-    <string name="a1">true</string>
-    <string name="a2">false</string>
-    <string name="a3">false</string>
+    <string name="a1">false</string>
+    <string name="a2">true</string>
+    <string name="a3">true</string>
     <string name="a4">true</string>
-    <string name="a5">5</string>
-    <string name="a6">6</string>
-    <string name="a7">7</string>
-    <string name="a8">8</string>
-    <string name="a9">9</string>
-    <string name="a10">10</string>
+    <string name="a5">false</string>
+    <string name="a6">false</string>
+    <string name="a7">true</string>
+    <string name="a8">false</string>
+    <string name="a9">true</string>
+    <string name="a10">true</string>
     <string name="are_you_sure_you_want_do_cheat">Are you sure you want do cheat?</string>
     <string name="show_answer">show answer</string>
+    <string name="do_cheat">do cheat</string>
 </resources>

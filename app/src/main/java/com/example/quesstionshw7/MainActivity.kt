@@ -1,9 +1,13 @@
 package com.example.quesstionshw7
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.quesstionshw7.databinding.ActivityMainBinding
 const val ANSWER = "answer"
@@ -12,8 +16,18 @@ class MainActivity : AppCompatActivity() {
     var quesstionNumber = 0
     var quesstionArray = arrayListOf<String>()
     var answerArray = arrayListOf<String>()
-    var cheatArray = arrayListOf<Boolean>()
+    var cheatArray = arrayListOf<Int>()
     var answered = arrayListOf<Int>()
+    var result = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result -> if (result.resultCode == Activity.RESULT_OK){
+        val data :Intent? = result.data
+            if (data != null) {
+                if (data.getBooleanExtra("idCheat",false)){
+                    cheatArray.add(quesstionNumber)
+                }
+            }
+    }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         showQuesstion()
 
         answeredQuesstion()
+        errorCheat()
         binding.btnNext.setOnClickListener { nextQuesstion() }
         binding.btnPrev.setOnClickListener { prevQuesstion() }
         binding.btnTrue.setOnClickListener { checkAnswer(true) }
@@ -56,15 +71,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun cheat() {
+    fun cheat() {
         val intent = Intent(this,AnswerActivity::class.java)
         intent.putExtra(ANSWER , answerArray[quesstionNumber].toString())
-        startActivity(intent)
+        result.launch(intent)
+    }
+    fun errorCheat(){
+        if (cheatArray.contains(quesstionNumber)) {
+            binding.doCheatTxv.visibility = View.VISIBLE
+        }else{
+            binding.doCheatTxv.visibility = View.INVISIBLE
+        }
     }
 
     private fun checkAnswer(answer:Boolean) {
         if (answer.toString() == answerArray[quesstionNumber]){
-            Toast.makeText(this,"correct" , Toast.LENGTH_SHORT).show()
+            if (cheatArray.contains(quesstionNumber)){
+                Toast.makeText(this, "cheat is wrong!", Toast.LENGTH_SHORT).show()
+                binding.doCheatTxv.visibility = View.VISIBLE
+            }else {
+                Toast.makeText(this, "correct", Toast.LENGTH_SHORT).show()
+            }
         }else{
             Toast.makeText(this,"incorrect!" , Toast.LENGTH_SHORT).show()
         }
@@ -82,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         }
         showQuesstion()
         answeredQuesstion()
+        errorCheat()
     }
     fun prevQuesstion(){
         if (quesstionNumber >0){
@@ -93,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         }
         showQuesstion()
         answeredQuesstion()
+        errorCheat()
     }
     fun showQuesstion(){
         binding.questionTxv.text = quesstionArray[quesstionNumber].toString()
