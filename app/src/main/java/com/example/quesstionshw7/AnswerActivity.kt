@@ -6,9 +6,9 @@ import android.os.Bundle
 import com.example.quesstionshw7.databinding.ActivityAnswerBinding
 
 class AnswerActivity : AppCompatActivity() {
-    lateinit var binding :ActivityAnswerBinding
-    lateinit var answer :String
-    var cheat =false
+    lateinit var binding: ActivityAnswerBinding
+    lateinit var answer: String
+    var cheat = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAnswerBinding.inflate(layoutInflater)
@@ -25,14 +25,14 @@ class AnswerActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
-    private fun showAnswer(ans:String) {
+    private fun showAnswer(ans: String) {
         cheat = true
         binding.texvShowAnswer.text = ans
     }
-    fun back(){
-        var intent =Intent()
-        intent.putExtra("idCheat",cheat)
-        setResult(RESULT_OK , intent)
-//        finish()
+
+    private fun back() {
+        var intent = Intent()
+        intent.putExtra("idCheat", cheat)
+        setResult(RESULT_OK, intent)
     }
 }
