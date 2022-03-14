@@ -76,6 +76,7 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         showQuestion()
         answeredQuestion()
         errorCheat()
+        enabledButtons()
     }
     private fun prevQuestion() {
         if (viewModelQuestion.questionNumber > 0) {
@@ -88,6 +89,7 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         showQuestion()
         answeredQuestion()
         errorCheat()
+        enabledButtons()
     }
     private fun checkAnswer(answer: Boolean) {
         if (answer.toString() ==
@@ -98,10 +100,11 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
             } else {
                 Toast.makeText(activity, "correct", Toast.LENGTH_SHORT).show()
             }
-        } else {
+        }
+        else {
             Toast.makeText(activity, "incorrect!", Toast.LENGTH_SHORT).show()
         }
-        viewModelQuestion.questions[viewModelQuestion.questionNumber].answer = true.toString()
+        viewModelQuestion.questions[viewModelQuestion.questionNumber].answered = true
         answeredQuestion()
     }
     private fun enabledButtons(){

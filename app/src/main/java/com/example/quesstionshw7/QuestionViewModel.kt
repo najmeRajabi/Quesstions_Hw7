@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class QuestionViewModel: ViewModel() {
     var questionNumber = 0
-    val answerArray = arrayListOf(
+    private val answerArray = arrayListOf(
     "false",
     "true", "true",
     "true", "false",
@@ -13,7 +13,7 @@ class QuestionViewModel: ViewModel() {
     "true"
     )
 
-    val questionArray = arrayListOf(
+    private val questionArray = arrayListOf(
     "1_برای تجزیه ی نور خورشید از آینه استفاده می شود.",
         "2_خورشید چشمه ی اصلی نور طبیعی و گرمای زمین است.",
         "3_نور یکی از شکل های انرژی است.",
