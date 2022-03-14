@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+/*
         if (savedInstanceState != null){
             cheatArray = savedInstanceState.getIntegerArrayList("cheat") as ArrayList<Int>
             answered = savedInstanceState.getIntegerArrayList("answered") as ArrayList<Int>
@@ -151,4 +151,6 @@ class MainActivity : AppCompatActivity() {
         }
         super.onSaveInstanceState(outState)
     }
-}
+
+ */
+}}
