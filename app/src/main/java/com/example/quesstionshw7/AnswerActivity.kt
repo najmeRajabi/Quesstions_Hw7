@@ -20,19 +20,19 @@ class AnswerActivity : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        back()
-        super.onBackPressed()
-    }
+//    override fun onBackPressed() {
+//        back()
+//        super.onBackPressed()
+//    }
 
-    private fun showAnswer(ans: String) {
-        cheat = true
-//        binding.texvShowAnswer.text = ans
-    }
+//    private fun showAnswer(ans: String) {
+//        cheat = true
+////        binding.texvShowAnswer.text = ans
+//    }
 
-    private fun back() {
-        var intent = Intent()
-        intent.putExtra("idCheat", cheat)
-        setResult(RESULT_OK, intent)
-    }
+//    private fun back() {
+//        var intent = Intent()
+//        intent.putExtra("idCheat", cheat)
+//        setResult(RESULT_OK, intent)
+//    }
 }

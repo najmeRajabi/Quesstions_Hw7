@@ -1,6 +1,7 @@
 package com.example.quesstionshw7
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.quesstionshw7.databinding.FragmentQuestionBinding
 
+var QNUMBER=0
 class QuestionFragment: Fragment(R.layout.fragment_question) {
     val viewModelQuestion: QuestionViewModel by viewModels()
     lateinit var binding: FragmentQuestionBinding
@@ -41,10 +43,10 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
 
     }
     private fun showQuestion() {
-        binding.questionTxv.text = viewModelQuestion.questions[viewModelQuestion.questionNumber].question
+        binding.questionTxv.text = viewModelQuestion.questions[QNUMBER].question
     }
     private fun answeredQuestion() {
-        if (viewModelQuestion.questions[viewModelQuestion.questionNumber].answered) {
+        if (viewModelQuestion.questions[QNUMBER].answered) {
             binding.btnFalse.isEnabled = false
             binding.btnTrue.isEnabled = false
             binding.cheatBtn.isEnabled = false
@@ -56,7 +58,7 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
 
     }
     private fun errorCheat() {
-        if (viewModelQuestion.questions[viewModelQuestion.questionNumber].cheat) {
+        if (viewModelQuestion.questions[QNUMBER].cheat) {
             binding.doCheatTxv.visibility = View.VISIBLE
         } else {
             binding.doCheatTxv.visibility = View.INVISIBLE
@@ -66,8 +68,8 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         findNavController().navigate(R.id.action_questionFragment3_to_answerFragment2)
     }
     private fun nextQuestion() {
-        if (viewModelQuestion.questionNumber < 9) {
-            viewModelQuestion.questionNumber++
+        if (QNUMBER < 9) {
+            QNUMBER +=1
             binding.btnPrev.isEnabled = true
         } else {
             binding.btnNext.isEnabled = false
@@ -79,8 +81,8 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         enabledButtons()
     }
     private fun prevQuestion() {
-        if (viewModelQuestion.questionNumber > 0) {
-            viewModelQuestion.questionNumber--
+        if (QNUMBER > 0) {
+            QNUMBER--
             binding.btnNext.isEnabled = true
         } else {
             binding.btnPrev.isEnabled = false
@@ -93,8 +95,9 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
     }
     private fun checkAnswer(answer: Boolean) {
         if (answer.toString() ==
-            viewModelQuestion.questions[viewModelQuestion.questionNumber].answer) {
-            if (viewModelQuestion.questions[viewModelQuestion.questionNumber].cheat) {
+            viewModelQuestion.questions[QNUMBER].answer) {
+            Log.d("answersssss", viewModelQuestion.questions[QNUMBER].cheat.toString()+"2")
+            if (viewModelQuestion.questions[QNUMBER].cheat) {
                 Toast.makeText(activity, "cheat is wrong!", Toast.LENGTH_SHORT).show()
                 binding.doCheatTxv.visibility = View.VISIBLE
             } else {
@@ -104,14 +107,14 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         else {
             Toast.makeText(activity, "incorrect!", Toast.LENGTH_SHORT).show()
         }
-        viewModelQuestion.questions[viewModelQuestion.questionNumber].answered = true
+        viewModelQuestion.questions[QNUMBER].answered = true
         answeredQuestion()
     }
     private fun enabledButtons(){
-        if (viewModelQuestion.questionNumber == 0){
+        if (QNUMBER == 0){
             binding.btnPrev.isEnabled = false
         }
-        else if (viewModelQuestion.questionNumber == 9){
+        else if (QNUMBER == 9){
             binding.btnNext.isEnabled = false
         }
     }
