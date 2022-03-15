@@ -96,7 +96,6 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
     private fun checkAnswer(answer: Boolean) {
         if (answer.toString() ==
             viewModelQuestion.questions[QNUMBER].answer) {
-            Log.d("answersssss", viewModelQuestion.questions[QNUMBER].cheat.toString()+"2")
             if (viewModelQuestion.questions[QNUMBER].cheat) {
                 Toast.makeText(activity, "cheat is wrong!", Toast.LENGTH_SHORT).show()
                 binding.doCheatTxv.visibility = View.VISIBLE
