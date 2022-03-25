@@ -1,19 +1,18 @@
 package com.example.quesstionshw7
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.quesstionshw7.databinding.FragmentQuestionBinding
 
 var QNUMBER=0
 class QuestionFragment: Fragment(R.layout.fragment_question) {
-    val viewModelQuestion: QuestionViewModel by viewModels()
+    val viewModelQuestion: QuestionViewModel by activityViewModels()
     lateinit var binding: FragmentQuestionBinding
 
     override fun onCreateView(
@@ -43,10 +42,10 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
 
     }
     private fun showQuestion() {
-        binding.questionTxv.text = viewModelQuestion.questions[QNUMBER].question
+        binding.questionTxv.text = viewModelQuestion.getQuestion(QNUMBER)
     }
     private fun answeredQuestion() {
-        if (viewModelQuestion.questions[QNUMBER].answered) {
+        if (viewModelQuestion.isAnswered(QNUMBER) == true) {
             binding.btnFalse.isEnabled = false
             binding.btnTrue.isEnabled = false
             binding.cheatBtn.isEnabled = false
@@ -58,7 +57,7 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
 
     }
     private fun errorCheat() {
-        if (viewModelQuestion.questions[QNUMBER].cheat) {
+        if (viewModelQuestion.isCheated(QNUMBER) == true) {
             binding.doCheatTxv.visibility = View.VISIBLE
         } else {
             binding.doCheatTxv.visibility = View.INVISIBLE
@@ -95,8 +94,8 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
     }
     private fun checkAnswer(answer: Boolean) {
         if (answer.toString() ==
-            viewModelQuestion.questions[QNUMBER].answer) {
-            if (viewModelQuestion.questions[QNUMBER].cheat) {
+            viewModelQuestion.getAnswer(QNUMBER)) {
+            if (viewModelQuestion.isCheated(QNUMBER) == true) {
                 Toast.makeText(activity, "cheat is wrong!", Toast.LENGTH_SHORT).show()
                 binding.doCheatTxv.visibility = View.VISIBLE
             } else {
@@ -106,7 +105,8 @@ class QuestionFragment: Fragment(R.layout.fragment_question) {
         else {
             Toast.makeText(activity, "incorrect!", Toast.LENGTH_SHORT).show()
         }
-        viewModelQuestion.questions[QNUMBER].answered = true
+        viewModelQuestion.answered(QNUMBER)
+//        viewModelQuestion.questions[QNUMBER].answered=true
         answeredQuestion()
     }
     private fun enabledButtons(){

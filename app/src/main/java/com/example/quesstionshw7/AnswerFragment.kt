@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.quesstionshw7.databinding.FragmentAnswerBinding
 
 class AnswerFragment:Fragment(R.layout.fragment_answer) {
-    val viewModelAnswer : QuestionViewModel by viewModels()
+//    val viewModelAnswer=QuestionFragment().viewModelQuestion
+    val viewModelAnswer : QuestionViewModel by activityViewModels()
     lateinit var binding: FragmentAnswerBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,10 +27,10 @@ class AnswerFragment:Fragment(R.layout.fragment_answer) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnShowAnswer.setOnClickListener{
-            viewModelAnswer.questions[QNUMBER].cheat = true
+            viewModelAnswer.cheated(QNUMBER)
+//            viewModelAnswer.questions[QNUMBER].cheat=true
             binding.texvShowAnswer.text =
-                viewModelAnswer.questions[QNUMBER].answer
-            Log.d("answersssss", viewModelAnswer.questions[QNUMBER].cheat.toString())
+                viewModelAnswer.getAnswer(QNUMBER)
         }
     }
 }
